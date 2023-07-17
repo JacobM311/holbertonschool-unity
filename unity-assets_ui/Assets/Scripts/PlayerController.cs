@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -77,7 +78,10 @@ public class PlayerController : MonoBehaviour
             Player.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-        
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     bool IsGrounded()
@@ -113,4 +117,5 @@ public class PlayerController : MonoBehaviour
     {
         Player.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
     }
+
 }
