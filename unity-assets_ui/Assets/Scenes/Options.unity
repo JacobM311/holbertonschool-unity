@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fbffffbf38f7c5469ec4063e62ce7b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0012b374ed50851419b74d94b1c86355, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fbffffbf38f7c5469ec4063e62ce7b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0012b374ed50851419b74d94b1c86355, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2332,7 +2332,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4164341722455358871}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

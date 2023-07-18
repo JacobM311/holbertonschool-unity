@@ -1,45 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    CameraController cameraController;
+
+    public void Start()
     {
-        
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        if (camera != null)
+        {
+            // Get a reference to the script
+            cameraController = camera.GetComponent<CameraController>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "MainMenu" && cameraController != null)
+        {
+            cameraController.enabled = false;
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+    public void LevelSelect(int Level)
+    {
+        PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
+
+        if (Level == 1)
+        {
+            SceneManager.LoadScene("Level01");
+        }
+        if (Level == 2)
+        {
+            SceneManager.LoadScene("Level02");
+        }
+        if (Level == 3)
+        {
+            SceneManager.LoadScene("Level03");
+        }
     }
 
-    public void LoadScene01()
+    public void Options()
     {
-        SceneManager.LoadScene("Level01");
-    }
-
-    public void LoadScene02()
-    {
-        SceneManager.LoadScene("Level02");
-    }
-
-    public void LoadScene03()
-    {
-        SceneManager.LoadScene("Level03");
-    }
-
-    public void LoadOptions()
-    {
+        PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("Options");
     }
 
-    public void LoadMainMenu()
+    public void Back()
     {
-        SceneManager.LoadScene("MainMenu");
+        // Check if there is a saved scene
+        if (PlayerPrefs.HasKey("previousScene"))
+        {
+            string previousScene = PlayerPrefs.GetString("previousScene");
+            SceneManager.LoadScene(previousScene);
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void Quit()
