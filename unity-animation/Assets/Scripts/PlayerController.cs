@@ -36,8 +36,11 @@ public class PlayerController : MonoBehaviour
         cameraRight.y = 0;
         cameraRight.Normalize();
 
+        Vector3 moveDirection = Vector3.zero;
+
         if (Input.GetKey(KeyCode.W))
         {
+            moveDirection += cameraForward;
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 Player.MovePosition(Player.position + cameraForward * sprintSpeed * Time.deltaTime);
@@ -50,17 +53,25 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
+            moveDirection -= cameraForward;
             Player.MovePosition(Player.position - cameraForward * speed * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
+            moveDirection -= cameraRight;
             Player.MovePosition(Player.position - cameraRight * speed * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
+            moveDirection += cameraRight;
             Player.MovePosition(Player.position + cameraRight * speed * Time.deltaTime);
+        }
+
+        if (moveDirection != Vector3.zero)
+        {
+            RotateTowards(moveDirection);
         }
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -79,6 +90,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void RotateTowards(Vector3 direction)
+    {
+        Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 360f * Time.deltaTime);
+    }
+
     bool IsGrounded()
     {
         // Cast a sphere slightly downwards to check if the player is grounded
@@ -89,7 +106,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Kill Zone"))
         {
-            Player.transform.position = new Vector3(-221, -23, 62);
+            Player.transform.position = new Vector3(-221, -15, 62);
             Player.transform.rotation = new Quaternion(0, 180, 0, 0);
             Player.velocity = new Vector3(0, 0, 0);
         }

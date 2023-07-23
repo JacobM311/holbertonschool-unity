@@ -7,11 +7,17 @@ public class CameraController : MonoBehaviour
     public Transform player;
     public Vector3 offset;
 
-    private float currentRotationV = 0f;
+    private float currentRotationV;
+    private float currentRotationH;
 
     void Start()
     {
+        currentRotationH = 180;
+        currentRotationV = 10;
+    }
 
+    void Update()
+    {
     }
 
     // Update is called once per frame
@@ -21,14 +27,12 @@ public class CameraController : MonoBehaviour
         float verticalMultiplier = SettingsManager.instance.isInverted ? -1 : 1;
         float vertical = Input.GetAxis("Mouse Y") * rotationSpeedV * verticalMultiplier;
 
-        player.Rotate(0, horizontal, 0);
+        currentRotationH += horizontal;
         currentRotationV -= vertical;
         currentRotationV = Mathf.Clamp(currentRotationV, -30f, 30f);
 
-        float desiredYAngle = player.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(currentRotationV, desiredYAngle, 0);
+        Quaternion rotation = Quaternion.Euler(currentRotationV, currentRotationH, 0);
         transform.position = player.position - (rotation * offset);
-
         transform.LookAt(player);
     }
 }
