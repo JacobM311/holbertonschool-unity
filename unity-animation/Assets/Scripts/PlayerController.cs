@@ -18,10 +18,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.1f;
 
+    private Animator animator;
+
     void Start()
     {
         Player = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -51,11 +54,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
         if (Input.GetKey(KeyCode.S))
         {
             moveDirection -= cameraForward;
             Player.MovePosition(Player.position - cameraForward * speed * Time.deltaTime);
         }
+
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -63,11 +68,15 @@ public class PlayerController : MonoBehaviour
             Player.MovePosition(Player.position - cameraRight * speed * Time.deltaTime);
         }
 
+
         if (Input.GetKey(KeyCode.D))
         {
             moveDirection += cameraRight;
             Player.MovePosition(Player.position + cameraRight * speed * Time.deltaTime);
         }
+
+        bool isWalking = moveDirection != Vector3.zero;
+        animator.SetBool("IsWalking", isWalking);
 
         if (moveDirection != Vector3.zero)
         {
