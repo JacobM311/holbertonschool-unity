@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,9 +17,10 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
 
     public LayerMask groundLayer;
-    public float groundCheckDistance = 0.1f;
+    public float groundCheckDistance = 0.01f;
 
-    private Animator animator;
+    Animator animator;
+    private float jumpTimer = 0f;
 
     void Start()
     {
@@ -87,22 +89,55 @@ public class PlayerController : MonoBehaviour
         {
             Player.velocity = Vector3.up * jumpVelocity;
         }
-
         if (Player.velocity.y < 0)
         {
             Player.velocity += Vector3.up * Physics.gravity.y * (fallVelocity - 1) * Time.deltaTime;
         }
-
         else if (Player.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             Player.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.Space) && jumpTimer <= 0f)
+        {
+            animator.SetBool("IsJumping", true);
+            jumpTimer = .08f;
+        }
+
+        if (jumpTimer >= 0f)
+        {
+            jumpTimer -= Time.deltaTime;
+        }
+        if (jumpTimer <= 0f && isGrounded)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (Player.velocity.y < 0 && !IsGrounded())
+        {
+            animator.SetBool("IsJumpFalling", true);
+            Debug.Log("I am jump falling");
+        }
+        // Check if the "Jump" animation has finished playing
+        else if (stateInfo.normalizedTime >= 1.0f && stateInfo.IsName("Jump"))
+        {
+            if (Player.velocity.y >= 0 || IsGrounded())
+            {
+                animator.SetBool("IsJumpFalling", false);
+            }
+        }
+        // If not falling and not in the middle of a jump animation, reset the "JumpFalling" state.
+        else
+        {
+            animator.SetBool("IsJumpFalling", false);
         }
     }
 
     void RotateTowards(Vector3 direction)
     {
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 360f * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 500f * Time.deltaTime);
     }
 
     bool IsGrounded()
