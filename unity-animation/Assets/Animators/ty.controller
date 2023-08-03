@@ -84,7 +84,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: RunningToJump
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: IsJumping
@@ -238,7 +238,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: IdleToJump
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: IsJumping
@@ -382,7 +382,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: JumpToIdle
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: IsJumping
@@ -418,10 +418,10 @@ AnimatorStateMachine:
     m_Position: {x: 140, y: 670, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3432880418346062231}
-    m_Position: {x: 460, y: 670, z: 0}
+    m_Position: {x: 430, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8441677811958347943}
-    m_Position: {x: 460, y: 360, z: 0}
+    m_Position: {x: 410, y: 340, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -438,7 +438,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: JumpToRunning
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: IsJumping
