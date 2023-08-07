@@ -8,6 +8,7 @@ TagManager:
   - Kill Zone
   - Bounce
   - Canoe
+  - IsFalling
   layers:
   - Default
   - TransparentFX

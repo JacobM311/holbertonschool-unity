@@ -56,20 +56,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
         if (Input.GetKey(KeyCode.S))
         {
             moveDirection -= cameraForward;
             Player.MovePosition(Player.position - cameraForward * speed * Time.deltaTime);
         }
 
-
         if (Input.GetKey(KeyCode.A))
         {
             moveDirection -= cameraRight;
             Player.MovePosition(Player.position - cameraRight * speed * Time.deltaTime);
         }
-
 
         if (Input.GetKey(KeyCode.D))
         {
@@ -148,13 +145,6 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Kill Zone"))
-        {
-            Player.transform.position = new Vector3(-221, -15, 62);
-            Player.transform.rotation = new Quaternion(0, 180, 0, 0);
-            Player.velocity = new Vector3(0, 0, 0);
-        }
-
         if (collision.gameObject.CompareTag("Canoe"))
         {
             transform.parent = collision.transform;

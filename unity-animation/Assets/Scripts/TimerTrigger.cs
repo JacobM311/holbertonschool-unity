@@ -5,26 +5,40 @@ using UnityEngine;
 public class TimerTrigger : MonoBehaviour
 {
     private Timer Script;
+    public Animator playerAnimator;
+
+    private IsFalling isFallingScript;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject player = GameObject.Find("Player");
         Script = player.GetComponent<Timer>();
+
+        // Directly find the IsFalling script from the IsFallingZone GameObject
+        isFallingScript = GameObject.Find("IsFallingZone").GetComponent<IsFalling>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Script.enabled = true;
-            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && isFallingScript.hasFallen)
+        {
+            playerAnimator.SetBool("HasFallen", true);
+            isFallingScript.ResetHasFallen();
         }
     }
 }
