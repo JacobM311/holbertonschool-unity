@@ -37,6 +37,10 @@ public class TimerTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && isFallingScript.hasFallen)
         {
+            Vector3 adjustedPosition = other.transform.position;
+            adjustedPosition.y -= 2.55f;
+            other.transform.position = adjustedPosition;
+
             playerAnimator.SetBool("HasFallen", true);
             isFallingScript.ResetHasFallen();
         }
