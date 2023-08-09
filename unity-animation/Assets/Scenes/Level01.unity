@@ -5676,7 +5676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 563694685}
   hasFallen: 0
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 1763478094}
 --- !u!1 &1444040768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 26ffec59ca92c40feabfa01c33c39f5c, type: 3}
@@ -6825,7 +6825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763478085}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -221, y: -23, z: 62}
+  m_LocalPosition: {x: -282.6, y: -23, z: 62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8146,6 +8146,7 @@ GameObject:
   - component: {fileID: 543450653001426997}
   - component: {fileID: 563694684}
   - component: {fileID: 563694685}
+  - component: {fileID: 919132148813460112}
   m_Layer: 0
   m_Name: ty
   m_TagString: Untagged
@@ -8153,6 +8154,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148813460112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148813460111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e95f5e58c1994fb08615952ad36e69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925061620610474165
 GameObject:
   m_ObjectHideFlags: 0

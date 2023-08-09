@@ -22,7 +22,6 @@ public class KillZoneTrigger : MonoBehaviour
             playerRigidbody.transform.position = new Vector3(-221, 10, 62);
             playerRigidbody.transform.rotation = Quaternion.Euler(0, 180, 0);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.enabled = false;
         }
     }
 }

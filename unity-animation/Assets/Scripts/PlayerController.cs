@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         isGrounded = IsGrounded();
 
         Vector3 cameraForward = playerCamera.transform.forward;
@@ -129,6 +130,19 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsJumpFalling", false);
         }
+    }
+
+    public void GettingUpEnded()
+    {
+        Debug.Log("Im getting up");
+        enabled = true;
+        animator.SetBool("GettingUp", false);
+        animator.SetBool("IsFalling", false);
+        Debug.Log("IsFalling: " + animator.GetBool("IsFalling"));
+        animator.SetBool("HasFallen", false);
+        animator.SetBool("IsWalking", false);
+        animator.SetBool("IsJumping", false);
+        animator.SetBool("IsJumpFalling", false);
     }
 
     void RotateTowards(Vector3 direction)

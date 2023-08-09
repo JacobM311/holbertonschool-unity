@@ -4,41 +4,40 @@ public class IsFalling : MonoBehaviour
 {
     public Animator playerAnimator;
     public bool hasFallen = false;
-    bool playerInputReceived = false;
-    private string gettingUpAnimationName = "GettingUp";
     public PlayerController playerScript;
 
-
+    private string FlatImpactAnimation = "Falling Flat Impact";
+    private string gettingUpAnimation = "Getting Up";
 
     void Start()
     {
-        GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player"); // Assumes player has tag "Player".
-        if (playerGameObject != null)
-        {
-            playerScript = playerGameObject.GetComponent<PlayerController>();
-        }
+
     }
 
     void Update()
     {
-        if (hasFallen == true)
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(FlatImpactAnimation) && playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space))
-            {
-                playerInputReceived = true;
-                if (playerInputReceived == true)
-                {
-                    playerAnimator.SetBool("GettingUp", true);
-                    if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(gettingUpAnimationName) && playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                    {
-                        if (playerScript != null)
-                        {
-                            playerScript.enabled = true;
-                        }
-                    }
-                }
-            }
+            playerAnimator.SetBool("GettingUp", true);
         }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(gettingUpAnimation) && playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            Debug.Log("Im getting up");
+            playerScript.enabled = true;
+            playerAnimator.SetBool("GettingUp", false);
+            playerAnimator.SetBool("IsFalling", false);
+            Debug.Log("IsFalling: " + playerAnimator.GetBool("IsFalling"));
+            playerAnimator.SetBool("HasFallen", false);
+            playerAnimator.SetBool("IsWalking", false);
+            playerAnimator.SetBool("IsJumping", false);
+            playerAnimator.SetBool("IsJumpFalling", false);
+        }
+    }
+
+    public void GettingUpEnded()
+    {
+        Debug.Log("Im getting up");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,13 +47,7 @@ public class IsFalling : MonoBehaviour
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.enabled = false;
             playerAnimator.SetBool("IsFalling", true);
-
             hasFallen = true;
         }
-    }
-
-    public void ResetHasFallen()
-    {
-        hasFallen = false;
     }
 }
