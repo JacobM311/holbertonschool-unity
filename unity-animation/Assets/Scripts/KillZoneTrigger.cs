@@ -6,7 +6,6 @@ public class KillZoneTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Assuming the player is tagged as "Player" in Unity
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
@@ -22,6 +21,10 @@ public class KillZoneTrigger : MonoBehaviour
             playerRigidbody.transform.position = new Vector3(-221, 10, 62);
             playerRigidbody.transform.rotation = Quaternion.Euler(0, 180, 0);
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+
+            Vector3 currentVelocity = playerRigidbody.velocity;
+            currentVelocity.x = 0;
+            playerRigidbody.velocity = currentVelocity;
         }
     }
 }
