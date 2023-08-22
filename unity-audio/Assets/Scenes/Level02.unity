@@ -145,6 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1523c14c5cd5b46a89abddf6876a772f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &363800677 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3857694084825220884, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+  m_PrefabInstance: {fileID: 3857694085184565105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &382961019
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aac642a63df243d987decb9935e7140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickSound: {fileID: 0}
 --- !u!4 &382961021
 Transform:
   m_ObjectHideFlags: 0
@@ -189,6 +195,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &474776067 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3857694084718243186, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+  m_PrefabInstance: {fileID: 3857694085184565105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &513248906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,6 +383,11 @@ MonoBehaviour:
   mainCamera: {fileID: 963194227}
   Player: {fileID: 1763478085}
   timerCanvas: {fileID: 1868180746}
+--- !u!82 &659298279 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3857694085607405718, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+  m_PrefabInstance: {fileID: 3857694085184565105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &669709885
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 563694685}
+  fallingGrassImpactSound: {fileID: 659298279}
+  fallingRockImpactSound: {fileID: 363800677}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 675eee4fcb5044c4a8925d5f8a8e5f0d, type: 3}
+--- !u!82 &979923408 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3857694085291007649, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+  m_PrefabInstance: {fileID: 3857694085184565105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1031422816
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +826,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1691279300 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3857694084575785141, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+  m_PrefabInstance: {fileID: 3857694085184565105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1763478085 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3434115872782855143, guid: f7254335eaf114a929041c75cbc3f220, type: 3}
@@ -1048,7 +1076,7 @@ GameObject:
   - component: {fileID: 577345652683298234}
   m_Layer: 3
   m_Name: tree_detailed_dark (1)
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1067,7 +1095,7 @@ GameObject:
   - component: {fileID: 577345651625221370}
   m_Layer: 3
   m_Name: tree_plateau_fall
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1086,7 +1114,7 @@ GameObject:
   - component: {fileID: 577345652610927026}
   m_Layer: 3
   m_Name: tree_detailed_dark
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2649,6 +2677,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3434115872782855148, guid: f7254335eaf114a929041c75cbc3f220, type: 3}
+      propertyPath: rockWalkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 74fb8d998e0e547b9b6f8604730be668, type: 3}
+    - target: {fileID: 3434115872782855148, guid: f7254335eaf114a929041c75cbc3f220, type: 3}
+      propertyPath: grassWalkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9915aa7c71850458188b7c176c0e10f3, type: 3}
+    - target: {fileID: 3434115872782855148, guid: f7254335eaf114a929041c75cbc3f220, type: 3}
+      propertyPath: rockWalkAudioSource
+      value: 
+      objectReference: {fileID: 979923408}
+    - target: {fileID: 3434115872782855148, guid: f7254335eaf114a929041c75cbc3f220, type: 3}
+      propertyPath: grassWalkAudioSource
+      value: 
+      objectReference: {fileID: 1691279300}
     - target: {fileID: 3434115872782855150, guid: f7254335eaf114a929041c75cbc3f220, type: 3}
       propertyPath: timerText
       value: 
@@ -16908,7 +16952,7 @@ GameObject:
   - component: {fileID: 3640845280749631068}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17429,8 +17473,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4487705842579572946}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 282.55875, y: -302.8, z: -193.7}
-  m_LocalScale: {x: 55.216583, y: 45.252, z: 60}
+  m_LocalPosition: {x: 282.55875, y: -306.7, z: -192.9}
+  m_LocalScale: {x: 61.008804, y: 45.252, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3640845281753245948}
@@ -17618,6 +17662,63 @@ Transform:
   m_Father: {fileID: 3640845281753245948}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3857694085184565105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3857694084258792290, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_Name
+      value: SFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.95453
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -14.037333
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -123.08616
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857694084258792293, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b6eca8a60f4c46deba4f9884971f1e4, type: 3}
 --- !u!65 &3984982679575544585
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17827,7 +17928,7 @@ GameObject:
   - component: {fileID: 3640845280195558413}
   m_Layer: 3
   m_Name: platform_stone
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17864,7 +17965,7 @@ GameObject:
   - component: {fileID: 3640845281876973420}
   m_Layer: 3
   m_Name: rock_tallB
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17883,7 +17984,7 @@ GameObject:
   - component: {fileID: 3640845281327454071}
   m_Layer: 3
   m_Name: rock_largeC (1)
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17920,7 +18021,7 @@ GameObject:
   - component: {fileID: 3640845282172923295}
   m_Layer: 3
   m_Name: rock_largeE (1)
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17957,7 +18058,7 @@ GameObject:
   - component: {fileID: 3640845281599767855}
   m_Layer: 3
   m_Name: rock_largeB
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17976,7 +18077,7 @@ GameObject:
   - component: {fileID: 3640845281312132248}
   m_Layer: 3
   m_Name: log_large (1)
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18013,7 +18114,7 @@ GameObject:
   - component: {fileID: 3640845280818969110}
   m_Layer: 3
   m_Name: rock_largeC (2)
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18050,7 +18151,7 @@ GameObject:
   - component: {fileID: 3640845280203393935}
   m_Layer: 3
   m_Name: rock_largeE
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18070,7 +18171,7 @@ GameObject:
   - component: {fileID: 4487705842579572947}
   m_Layer: 3
   m_Name: log_large
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18156,7 +18257,7 @@ GameObject:
   - component: {fileID: 3640845280871246005}
   m_Layer: 3
   m_Name: rock_largeA (1)
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18193,7 +18294,7 @@ GameObject:
   - component: {fileID: 3640845282122356019}
   m_Layer: 3
   m_Name: rock_largeC
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18228,7 +18329,7 @@ GameObject:
   - component: {fileID: 3640845281027910524}
   m_Layer: 3
   m_Name: rock_largeA
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18295,7 +18396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada8ad1017094664b426cd407193a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: {fileID: 0}
+  Timer: {fileID: 191259907}
+  Audio: {fileID: 474776067}
 --- !u!33 &5695972365197761445
 MeshFilter:
   m_ObjectHideFlags: 0

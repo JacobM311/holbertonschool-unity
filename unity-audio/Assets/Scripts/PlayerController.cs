@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     private float jumpTimer = 0f;
 
+    public AudioSource grassWalkAudioSource;
+    public AudioSource rockWalkAudioSource;
+
     void Start()
     {
         Player = GetComponent<Rigidbody>();
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumpFalling", true);
             Debug.Log("I am jump falling");
         }
-        // Check if the "Jump" animation has finished playing
+
         else if (stateInfo.normalizedTime >= 1.0f && stateInfo.IsName("Jump"))
         {
             if (Player.velocity.y >= 0 || IsGrounded())
@@ -125,10 +128,51 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsJumpFalling", false);
             }
         }
-        // If not falling and not in the middle of a jump animation, reset the "JumpFalling" state.
+
         else
         {
             animator.SetBool("IsJumpFalling", false);
+        }
+
+        if (isWalking && isGrounded)
+        {
+            PlayWalkSound();
+        }
+        else
+        {
+            grassWalkAudioSource.Stop();
+            rockWalkAudioSource.Stop();
+        }
+    }
+
+        void PlayWalkSound()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, groundLayer))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Grass":
+                    if (!grassWalkAudioSource.isPlaying)
+                    {
+                        grassWalkAudioSource.Play();
+                        rockWalkAudioSource.Stop(); // Make sure to stop the other sound
+                    }
+                    break;
+
+                case "Rock":
+                    if (!rockWalkAudioSource.isPlaying)
+                    {
+                        rockWalkAudioSource.Play();
+                        grassWalkAudioSource.Stop(); // Make sure to stop the other sound
+                    }
+                    break;
+
+                default:
+                    grassWalkAudioSource.Stop();
+                    rockWalkAudioSource.Stop();
+                    break;
+            }
         }
     }
 
@@ -153,7 +197,6 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
-        // Cast a sphere slightly downwards to check if the player is grounded
         return Physics.SphereCast(transform.position, playerCollider.bounds.extents.x, Vector3.down, out RaycastHit hit, playerCollider.bounds.extents.y + groundCheckDistance, groundLayer);
     }
 

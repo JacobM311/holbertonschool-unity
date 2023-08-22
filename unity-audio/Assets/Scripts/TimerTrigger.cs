@@ -9,6 +9,9 @@ public class TimerTrigger : MonoBehaviour
 
     private IsFalling isFallingScript;
 
+    public AudioSource fallingGrassImpactSound;
+    public AudioSource fallingRockImpactSound;
+
     void Start()
     {
         GameObject player = GameObject.Find("Player");
@@ -29,7 +32,23 @@ public class TimerTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player" && isFallingScript.hasFallen)
         {
             playerAnimator.SetBool("HasFallen", true);
-            isFallingScript.hasFallen = false; // Resetting here since ResetHasFallen() method is removed
+            isFallingScript.hasFallen = false;
+
+            if (other.gameObject.tag == "Grass")
+            {
+                if (fallingGrassImpactSound && !fallingGrassImpactSound.isPlaying)
+                {
+                    fallingGrassImpactSound.Play();
+                }
+            }
+
+            if (other.gameObject.tag == "Rock")
+            {
+                if (fallingRockImpactSound && !fallingRockImpactSound.isPlaying)
+                {
+                    fallingRockImpactSound.Play();
+                }
+            }
         }
     }
 }
