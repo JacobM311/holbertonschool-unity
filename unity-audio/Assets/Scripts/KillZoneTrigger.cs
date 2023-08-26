@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KillZoneTrigger : MonoBehaviour
 {
-    private Rigidbody playerRigidbody; // Reference to the player's Rigidbody
+    private Rigidbody playerRigidbody;
 
     private void Start()
     {

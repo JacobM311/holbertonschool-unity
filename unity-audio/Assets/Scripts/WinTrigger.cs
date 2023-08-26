@@ -8,6 +8,7 @@ public class WinTrigger : MonoBehaviour
     public Text Timer;
     private Timer Script;
     public AudioSource Audio;
+    public AudioSource VictoryAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class WinTrigger : MonoBehaviour
             Script.timerText.color = Color.green;
             Script.timerText.rectTransform.localScale = new Vector3(.5f, .5f, .5f);
             Audio.Stop();
+            VictoryAudio.Play();
         }
 
     }

@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = IsGrounded();
 
         Vector3 cameraForward = playerCamera.transform.forward;
-        cameraForward.y = 0;  // now i ignore the y direction so the up and down movement of the camera dont effect the players movement
+        cameraForward.y = 0;
         cameraForward.Normalize();
 
         Vector3 cameraRight = playerCamera.transform.right;
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-        void PlayWalkSound()
+    void PlayWalkSound()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, groundLayer))
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
                     if (!grassWalkAudioSource.isPlaying)
                     {
                         grassWalkAudioSource.Play();
-                        rockWalkAudioSource.Stop(); // Make sure to stop the other sound
+                        rockWalkAudioSource.Stop();
                     }
                     break;
 
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
                     if (!rockWalkAudioSource.isPlaying)
                     {
                         rockWalkAudioSource.Play();
-                        grassWalkAudioSource.Stop(); // Make sure to stop the other sound
+                        grassWalkAudioSource.Stop();
                     }
                     break;
 

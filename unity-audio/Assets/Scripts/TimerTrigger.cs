@@ -34,7 +34,7 @@ public class TimerTrigger : MonoBehaviour
             playerAnimator.SetBool("HasFallen", true);
             isFallingScript.hasFallen = false;
 
-            if (other.gameObject.tag == "Grass")
+            if (other.gameObject.tag == "Player")
             {
                 if (fallingGrassImpactSound && !fallingGrassImpactSound.isPlaying)
                 {
@@ -42,7 +42,7 @@ public class TimerTrigger : MonoBehaviour
                 }
             }
 
-            if (other.gameObject.tag == "Rock")
+            if (other.gameObject.tag == "Player")
             {
                 if (fallingRockImpactSound && !fallingRockImpactSound.isPlaying)
                 {

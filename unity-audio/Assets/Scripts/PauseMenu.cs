@@ -1,10 +1,17 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseCanvas;
     private bool isPaused = false;
+
+    public AudioMixer mixer;
+    public AudioMixerSnapshot normalSnapshot;
+    public AudioMixerSnapshot pausedSnapshot;
+    public float transitionTime = 1.0f;
+
 
     private void Start()
     {
@@ -33,6 +40,8 @@ public class PauseMenu : MonoBehaviour
     {
         pauseCanvas.SetActive(true);
 
+        pausedSnapshot.TransitionTo(transitionTime);
+
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
@@ -44,6 +53,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseCanvas.SetActive(false);
+
+        normalSnapshot.TransitionTo(transitionTime);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
