@@ -5,5 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes: []
-  m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0
+  m_configObjects:
+    AR Foundation RemoteARFoundationRemoteLoaderSettings: {fileID: 11400000, guid: ca4d5de3249790a449c85be8e6d942a3, type: 2}
+    AR Foundation RemoteARFoundationRemoteSessionRecordsData: {fileID: 11400000, guid: 90f87d60c01c5f946872a9c22191992b, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 271280bbc50867047928f112950a2422, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 958b1593bf55dd543a6c9d9b734c6607, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 043e5952a3e31ba4895934a11ef1a092, type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 02161c23a96be3a4595e0fbef2c3fd4f, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e408aea0817c726479631ce338dc07f1, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: d1515ee2056133444a80b3dd22082f0e, type: 2}
