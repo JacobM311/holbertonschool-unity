@@ -2,30 +2,86 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    private ARPlaneManager planeManager;
-    public Vector3 offset = new Vector3(0, 0, 0);
+    private ARRaycastManager aRRaycastManager;
+    public int numberOfEnemies = 5;
+    private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
     {
-        planeManager = FindObjectOfType<ARPlaneManager>();
-        if (planeManager != null)
+        aRRaycastManager = GetComponent<ARRaycastManager>();
+    }
+
+    void Update()
+    {
+        if (Input.touchCount > 0)
         {
-            planeManager.planesChanged += OnPlaneChanged;
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (aRRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
+                {
+                    ARPlane hitPlane = (ARPlane)hits[0].trackable;
+                    SpawnEnemiesOnPlane(hitPlane);
+                }
+            }
         }
     }
 
-    void OnPlaneChanged(ARPlanesChangedEventArgs args)
+    private void SpawnEnemiesOnPlane(ARPlane plane)
     {
-        foreach (var plane in args.added)
-        {
-            Vector3 spawnPosition = plane.transform.position + offset;
-            Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
-            Debug.Log("Enemy placed");
+        List<GameObject> spawnedEnemies = new List<GameObject>();
 
+        // Spawn the first enemy at the center of the plane
+        GameObject firstEnemy = Instantiate(EnemyPrefab, plane.center, Quaternion.identity);
+        spawnedEnemies.Add(firstEnemy);
+
+        // Spawn additional enemies around the first enemy
+        for (int i = 1; i < numberOfEnemies; i++)
+        {
+            Vector3 spawnPosition;
+            bool positionFound;
+
+            do
+            {
+                positionFound = true;
+                spawnPosition = GetRandomPositionAround(firstEnemy.transform.position, plane.extents);
+
+                // Check for collisions with already spawned enemies
+                foreach (GameObject enemy in spawnedEnemies)
+                {
+                    if (IsColliding(spawnPosition, enemy.transform.position))
+                    {
+                        positionFound = false;
+                        break;
+                    }
+                }
+            }
+            while (!positionFound);
+
+            GameObject newEnemy = Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
+            spawnedEnemies.Add(newEnemy);
         }
+    }
+
+    private bool IsColliding(Vector3 position1, Vector3 position2)
+    {
+        float minDistance = .05f; // Minimum distance between enemies to avoid collision
+        float distance = Vector3.Distance(position1, position2);
+        return distance < minDistance;
+    }
+
+    private Vector3 GetRandomPositionAround(Vector3 center, Vector3 extents)
+    {
+        // Generate a random position within the extents around the given center
+        float randomX = Random.Range(-extents.x, extents.x);
+        float randomZ = Random.Range(-extents.z, extents.z);
+        return new Vector3(center.x + randomX, center.y, center.z + randomZ);
     }
 }
