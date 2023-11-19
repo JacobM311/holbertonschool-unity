@@ -38,11 +38,9 @@ public class EnemySpawner : MonoBehaviour
     {
         List<GameObject> spawnedEnemies = new List<GameObject>();
 
-        // Spawn the first enemy at the center of the plane
         GameObject firstEnemy = Instantiate(EnemyPrefab, plane.center, Quaternion.identity);
         spawnedEnemies.Add(firstEnemy);
 
-        // Spawn additional enemies around the first enemy
         for (int i = 1; i < numberOfEnemies; i++)
         {
             Vector3 spawnPosition;
@@ -53,7 +51,6 @@ public class EnemySpawner : MonoBehaviour
                 positionFound = true;
                 spawnPosition = GetRandomPositionAround(firstEnemy.transform.position, plane.extents);
 
-                // Check for collisions with already spawned enemies
                 foreach (GameObject enemy in spawnedEnemies)
                 {
                     if (IsColliding(spawnPosition, enemy.transform.position))
@@ -72,14 +69,13 @@ public class EnemySpawner : MonoBehaviour
 
     private bool IsColliding(Vector3 position1, Vector3 position2)
     {
-        float minDistance = .05f; // Minimum distance between enemies to avoid collision
+        float minDistance = .05f;
         float distance = Vector3.Distance(position1, position2);
         return distance < minDistance;
     }
 
     private Vector3 GetRandomPositionAround(Vector3 center, Vector3 extents)
     {
-        // Generate a random position within the extents around the given center
         float randomX = Random.Range(-extents.x, extents.x);
         float randomZ = Random.Range(-extents.z, extents.z);
         return new Vector3(center.x + randomX, center.y, center.z + randomZ);

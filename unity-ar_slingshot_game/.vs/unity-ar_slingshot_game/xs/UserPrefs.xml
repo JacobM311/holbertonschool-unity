@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{FCCC24E2-5A28-34B0-E868-B3883B291C41}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Slingshot.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Slingshot.cs" Line="21" Column="18" />
+      <File FileName="Assets/Scripts/InitialBallSpawn.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ARFoundationRemote.Installer.Editor PreferredExecutionTarget="677998cf-38c3-421a-b43a-fdb1032425b6" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
