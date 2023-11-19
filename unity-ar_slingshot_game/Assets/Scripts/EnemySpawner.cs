@@ -10,7 +10,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject EnemyPrefab;
     private ARRaycastManager aRRaycastManager;
     public int numberOfEnemies = 5;
+    public TextMesh textToDisable;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
+    public List<GameObject> ballObjects = new List<GameObject>();
 
     void Start()
     {
@@ -36,10 +39,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemiesOnPlane(ARPlane plane)
     {
-        List<GameObject> spawnedEnemies = new List<GameObject>();
-
         GameObject firstEnemy = Instantiate(EnemyPrefab, plane.center, Quaternion.identity);
         spawnedEnemies.Add(firstEnemy);
+        textToDisable.gameObject.SetActive(false);
 
         for (int i = 1; i < numberOfEnemies; i++)
         {
@@ -64,6 +66,11 @@ public class EnemySpawner : MonoBehaviour
 
             GameObject newEnemy = Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
             spawnedEnemies.Add(newEnemy);
+        }
+
+        foreach (GameObject var in ballObjects)
+        {
+            var.SetActive(true);
         }
     }
 
