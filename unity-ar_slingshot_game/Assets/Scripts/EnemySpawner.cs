@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 
 public class EnemySpawner : MonoBehaviour
@@ -10,10 +12,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject EnemyPrefab;
     private ARRaycastManager aRRaycastManager;
     public int numberOfEnemies = 5;
-    public TextMesh textToDisable;
+    public TMP_Text textToDisable;
+    public TMP_Text textToEnable;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-    public List<GameObject> ballObjects = new List<GameObject>();
+    public GameObject images;
+    public InitialBallSpawn Script;
+    private ARPlane storedPlane;
 
     void Start()
     {
@@ -42,6 +47,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject firstEnemy = Instantiate(EnemyPrefab, plane.center, Quaternion.identity);
         spawnedEnemies.Add(firstEnemy);
         textToDisable.gameObject.SetActive(false);
+        textToEnable.gameObject.SetActive(true);
+        images.SetActive(true);
+        storedPlane = plane;
 
         for (int i = 1; i < numberOfEnemies; i++)
         {
@@ -67,11 +75,8 @@ public class EnemySpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
             spawnedEnemies.Add(newEnemy);
         }
-
-        foreach (GameObject var in ballObjects)
-        {
-            var.SetActive(true);
-        }
+        Script.enabled = true;
+        this.enabled = false;
     }
 
     private bool IsColliding(Vector3 position1, Vector3 position2)
@@ -86,5 +91,25 @@ public class EnemySpawner : MonoBehaviour
         float randomX = Random.Range(-extents.x, extents.x);
         float randomZ = Random.Range(-extents.z, extents.z);
         return new Vector3(center.x + randomX, center.y, center.z + randomZ);
+    }
+
+    public void ResetEnemies()
+    {
+        foreach (var enemy in spawnedEnemies)
+        {
+            Destroy(enemy);
+        }
+        spawnedEnemies.Clear();
+
+        //respawn enemies on the stored plane
+        if (storedPlane != null)
+        {
+            SpawnEnemiesOnPlane(storedPlane);
+        }
+    }
+
+    public ARPlane GetStoredPlane()
+    {
+        return storedPlane;
     }
 }

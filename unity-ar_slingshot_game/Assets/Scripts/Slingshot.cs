@@ -8,7 +8,7 @@ public class Slingshot : MonoBehaviour
     private Vector2 touchEndPos;
     public GameObject ballPrefab;
     private Rigidbody rb;
-    private float forceMultiplier = .08f;
+    private float forceMultiplier = .03f;
     private bool hasShot = false;
 
     // Start is called before the first frame update
@@ -31,30 +31,24 @@ public class Slingshot : MonoBehaviour
 
                 case TouchPhase.Ended:
                     touchEndPos = touch.position;
-                    Shoot(touchStartPos + touchEndPos);
+                    Shoot();
                     break;
             }
         }
     }
 
-    private void Shoot(Vector3 force)
+    private void Shoot()
     {
         if (!hasShot)
         {
             rb.transform.SetParent(null);
             rb.isKinematic = false;
 
-            // Calculate the swipe direction and magnitude in screen space
-            Vector2 swipeDirection = (touchEndPos - touchStartPos).normalized;
-            float swipeMagnitude = (touchEndPos - touchStartPos).magnitude;
-
-            // Convert the swipe direction to world space using the camera's orientation
+            Vector2 swipeDirection = (touchStartPos - touchEndPos).normalized;
+            float swipeMagnitude = (touchStartPos - touchEndPos).magnitude;
             Vector3 worldSwipeDirection = Camera.main.transform.TransformDirection(swipeDirection.x, 0, swipeDirection.y);
-
-            // Apply the magnitude of the swipe as the force multiplier
             Vector3 forceToApply = worldSwipeDirection * swipeMagnitude * forceMultiplier;
 
-            // Apply the force to the Rigidbody
             rb.AddForce(forceToApply, ForceMode.Impulse);
             hasShot = true;
         }

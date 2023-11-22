@@ -1,0 +1,5 @@
+C:/Users/Jacob/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/4g364v71/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Jacob/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/4g364v71/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/Jacob/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/4g364v71/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/Jacob/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/4g364v71/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/Jacob/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/4g364v71/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
